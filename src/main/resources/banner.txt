@@ -1,0 +1,11 @@
+${Ansi.YELLOW}::::    ::: ::::::::::: ::::    ::: ::::::::::: :::
+${Ansi.YELLOW}:+:+:   :+:     :+:     :+:+:   :+:     :+:   :+: :+:
+${Ansi.BRIGHT_YELLOW}:+:+:+  +:+     +:+     :+:+:+  +:+     +:+  +:+   +:+
+${Ansi.BRIGHT_YELLOW}+#+ +:+ +#+     +#+     +#+ +:+ +#+     +#+ +#++:++#++:
+${Ansi.RED}+#+  +#+#+#     +#+     +#+  +#+#+#     +#+ +#+     +#+
+${Ansi.BRIGHT_RED}#+#   #+#+#     #+#     #+#   #+#+# #+# #+# #+#     #+#
+${Ansi.BRIGHT_RED}###    #### ########### ###    ####  #####  ###     ###
+
+
+${Ansi.RED} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
+
