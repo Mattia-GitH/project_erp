@@ -80,13 +80,12 @@ public class ExportController {
             BatteryModel batteryModel = batteryService.findFirstByImeiOrderByDateDesc(i.getImei());
             itc.setCycles(batteryModel.getCycles());
             itc.setSoh(batteryModel.getSoh());
-            GradeModel grade = gradeService.gradeByImei(i.getImei());
+            GradeModel grade = gradeService.findFirstByImeiOrderByIdDesc(i.getImei());
             itc.setGrade_supplier(grade.getGrade_sup());
             itc.setGrade_check(grade.getGrade_check());
             TestingModel test = testingService.findFirstByImeiAndDate(i.getImei(), utilDate, utilDate2);
             itc.setOperator(test.getOperator());
             itc.setDate(test.getDate());
-
 
             List<String> values = new ArrayList<>();
 

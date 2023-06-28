@@ -9,11 +9,13 @@ public interface GradeService {
 
     List<GradeModel> listGrades();
 
-    GradeModel gradeByImei(Long imei);
+    GradeModel gradeById(Long id);
 
     GradeModel updateGrade(GradeModel gradeModel, Long imei);
 
     String delete(Long imei);
 
     boolean isPresent(Long imei);
+
+    GradeModel findFirstByImeiOrderByIdDesc(Long imei);
 }

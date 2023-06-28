@@ -36,12 +36,12 @@ public class GradeServiceImp implements GradeService {
     }
 
     @Override
-    public GradeModel gradeByImei(Long imei) {
-        Optional<GradeEntity> optional = repository.findById(imei);
+    public GradeModel gradeById(Long id) {
+        Optional<GradeEntity> optional = repository.findById(id);
         if (optional.isPresent()){
             return converter.toModel(optional.get());
         } else {
-            throw new GradeNotFoundException("Grade not found: " + imei);
+            throw new GradeNotFoundException("Grade not found: " + id);
         }
     }
 
@@ -74,5 +74,15 @@ public class GradeServiceImp implements GradeService {
     public boolean isPresent(Long imei){
         Optional<GradeEntity> optional = repository.findById(imei);
         return optional.isPresent();
+    }
+
+    @Override
+    public GradeModel findFirstByImeiOrderByIdDesc(Long imei) {
+        Optional<GradeEntity> optional = repository.findFirstByImeiOrderByIdDesc(imei);
+        if (optional.isPresent()){
+            return converter.toModel(optional.get());
+        } else {
+            throw new GradeNotFoundException("Grade not found. IMEI: " + imei);
+        }
     }
 }

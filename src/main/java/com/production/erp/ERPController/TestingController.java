@@ -69,7 +69,7 @@ public class TestingController {
 
         List<GradeModel> gradeList = new ArrayList<>();
 
-        System.out.println(sImei.getImei1() + "-" + sImei.getImei2()  + "-" + sImei.getImei3()  + "-" + sImei.getImei4());
+        System.out.println(sImei.getImei1() + "-" + sImei.getImei2() + "-" + sImei.getImei3() + "-" + sImei.getImei4());
 
         if (sImei.getImei1() == null) sImei.setImei1("");
         if (sImei.getImei2() == null) sImei.setImei2("");
@@ -113,7 +113,6 @@ public class TestingController {
             }
         }
 
-
         model.addAttribute("gradeList", gradeList);
 
         return "ERP/testing/grading";
@@ -143,10 +142,16 @@ public class TestingController {
         model.addAttribute("test", testForm);
 
         List<TestingModel> list = new ArrayList<>();
-        if (!Objects.equals(status, "TESTING")) {
-            grades.getGradeList().forEach(gradeService::createGrade);
-            grades.gradeList.forEach(g -> phoneService.updateSku(g.getImei(), phoneService.phoneByImei(g.getImei()).getModel().substring(7).replaceAll(" ", "").toUpperCase() + phoneService.phoneByImei(g.getImei()).getGb() + phoneService.phoneByImei(g.getImei()).getColor().replaceAll(" ", "").toUpperCase() + g.getGrade_check()));
+//        if (!Objects.equals(status, "TESTING")) {
+        for (GradeModel g : grades.getGradeList()) {
+            g.setOperator(authentication.getName());
+            g.setPhase(status);
+            gradeService.createGrade(g);
+            PhoneModel phoneModel = phoneService.phoneByImei(g.getImei());
+            phoneService.updateSku(g.getImei(), phoneModel.getModel().substring(7).replaceAll(" ", "").toUpperCase() + phoneModel.getGb() + phoneModel.getColor().replaceAll(" ", "").toUpperCase() + g.getGrade_check());
         }
+//        grades.gradeList.forEach(g -> phoneService.updateSku(g.getImei(), phoneService.phoneByImei(g.getImei()).getModel().substring(7).replaceAll(" ", "").toUpperCase() + phoneService.phoneByImei(g.getImei()).getGb() + phoneService.phoneByImei(g.getImei()).getColor().replaceAll(" ", "").toUpperCase() + g.getGrade_check()));
+//        }
 
         if (grades.getGradeList() != null) {
             grades.getGradeList().forEach(g -> list.add(new TestingModel(g.getImei(), authentication.getName())));

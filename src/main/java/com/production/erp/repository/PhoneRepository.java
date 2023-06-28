@@ -82,7 +82,7 @@ public interface PhoneRepository extends JpaRepository<PhoneEntity, Long> {
     @Query("SELECT new com.production.erp.importExport.ShippingExportModel(COUNT(p.imei),p.sku, AVG(s.price)) FROM PhoneEntity AS p INNER JOIN LastStatusViewEntity AS sw ON p.imei = sw.imei INNER JOIN ShippingEntity AS s on s.imei = p.imei WHERE sw.send_to = 'SENT' GROUP BY p.sku")
     List<ShippingExportModel> shippingExport();
 
-    @Query("SELECT new com.production.erp.importExport.OutputExportModel(p.imei, p.color, g.grade_check) FROM PhoneEntity AS p INNER JOIN LastStatusViewEntity AS sw ON p.imei = sw.imei INNER JOIN GradeEntity AS g ON p.imei = g.imei WHERE sw.send_to = 'STOCK' AND sw.date > :date")
+    @Query("SELECT new com.production.erp.importExport.OutputExportModel(p.imei, p.color, g.grade_check, p.gb, p.sku, sw.date) FROM PhoneEntity AS p INNER JOIN LastStatusViewEntity AS sw ON p.imei = sw.imei INNER JOIN GradeEntity AS g ON p.imei = g.imei WHERE g.id = (SELECT MAX(g2.id) from GradeEntity as g2 where g2.imei = g.imei) AND sw.send_to = 'STOCK' AND sw.date > :date")
     List<OutputExportModel> outputExport(@Param("date")Date date);
 
     @Query("SELECT new com.production.erp.view.Warehouse(p.sku, p.model, p.gb, p.color, COUNT(p.imei)) FROM PhoneEntity AS p INNER JOIN SuppliersEntity AS s ON p.id_supplier = s.id INNER JOIN LastStatusViewEntity AS sw ON p.imei = sw.imei WHERE sw.send_to = 'STOCK' AND (:sku IS NULL OR p.sku = :sku) AND (:model IS NULL OR p.model = :model) AND (:color IS NULL OR p.color = :color) AND (:gb = 0 OR p.gb = :gb) GROUP BY p.sku")

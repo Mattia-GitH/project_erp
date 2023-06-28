@@ -241,7 +241,7 @@
                 <div class="button-wrap">
                     <h4 style="color: red">Select GB</h4>
                     <c:choose>
-                        <c:when test="${info.model == 'iPhone SE' || info.model == 'iPhone SE3' || info.model == 'iPhone XR' || info.model == 'iPhone 11' }">
+                        <c:when test="${info.model == 'iPhone SE' || info.model == 'iPhone SE3' || info.model == 'iPhone XR' || info.model == 'iPhone 11' || info.model == 'iPhone 12M' || info.model == 'iPhone 12'}">
                             <form:radiobutton class="hidden radio-label select-button" path="gb" id="64-button"
                                               value="64" required="true"/>
                             <form:label class="button-label" for="64-button" path="gb">

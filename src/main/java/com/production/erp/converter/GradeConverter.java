@@ -11,17 +11,23 @@ import java.util.stream.Collectors;
 public class GradeConverter {
     public GradeModel toModel(GradeEntity entity) {
         GradeModel model = new GradeModel();
+        model.setId(entity.getId());
         model.setImei(entity.getImei());
         model.setGrade_sup(entity.getGrade_sup());
         model.setGrade_check(entity.getGrade_check());
+        model.setOperator(entity.getOperator());
+        model.setPhase(entity.getPhase());
         return model;
     }
 
     public GradeEntity toEntity(GradeModel model) {
         GradeEntity entity = new GradeEntity();
+        entity.setId(model.getId());
         entity.setImei(model.getImei());
         entity.setGrade_sup(model.getGrade_sup());
         entity.setGrade_check(model.getGrade_check());
+        entity.setOperator(model.getOperator());
+        entity.setPhase(model.getPhase());
         return entity;
     }
 

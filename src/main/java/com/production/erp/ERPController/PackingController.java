@@ -79,7 +79,7 @@ public class PackingController {
                 boolean isRev = checkRev == 22;
 
                 model.addAttribute("rev", isRev);
-                model.addAttribute("grade", gradeService.gradeByImei(imei));
+                model.addAttribute("grade", gradeService.findFirstByImeiOrderByIdDesc(imei));
                 model.addAttribute("info", phoneService.phoneInfos(imei));
                 model.addAttribute("issues", issueListService.listIssues());
                 model.addAttribute("pack", new PhoneModel());
@@ -117,7 +117,11 @@ public class PackingController {
 
     @RequestMapping("/packed")
     public String packed(Model model, @ModelAttribute("pack") PhoneModel pack, @RequestParam("grade") String grade, @RequestParam("send_to") String send_to, @RequestParam("hours") String hours, @RequestParam("mins") String mins, @RequestParam("seconds") String seconds) {
-        GradeModel gradeModel = gradeService.gradeByImei(pack.getImei());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        GradeModel gradeModel = gradeService.findFirstByImeiOrderByIdDesc(pack.getImei());
+        gradeModel.setId(null);
+        gradeModel.setPhase("PACKING");
+        gradeModel.setOperator(authentication.getName());
         gradeModel.setGrade_check(grade);
         gradeService.createGrade(gradeModel);
 

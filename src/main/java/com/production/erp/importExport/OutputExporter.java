@@ -41,6 +41,9 @@ public class OutputExporter {
         createCell(row, 0, "imei", style);
         createCell(row, 1, "color", style);
         createCell(row, 2, "grade", style);
+        createCell(row, 3, "gb", style);
+        createCell(row, 4, "sku", style);
+        createCell(row, 5, "date", style);
 
     }
 
@@ -81,6 +84,9 @@ public class OutputExporter {
             createCell(row,0, outputRow.getImei(), style);
             createCell(row,1, outputRow.getColor(), style);
             createCell(row,2, outputRow.getGrade(), style);
+            createCell(row,3, outputRow.getGb(), style);
+            createCell(row,4, outputRow.getSku(), style);
+            createCell(row,5, outputRow.getDate(), style);
         }
     }
 
