@@ -68,7 +68,7 @@ public class ChestController {
                     c.setPhase(phase);
                     chestService.createChest(c);
                 } else {
-                    msg.add(c.getImei() + " send to: " + status.getSend_to());
+                    msg.add(c.getImei() + " "  + " send to: " + status.getSend_to());
                 }
             }
         }

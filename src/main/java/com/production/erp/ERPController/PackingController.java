@@ -116,7 +116,7 @@ public class PackingController {
     }
 
     @RequestMapping("/packed")
-    public String packed(Model model, @ModelAttribute("pack") PhoneModel pack, @RequestParam("grade") String grade, @RequestParam("send_to") String send_to, @RequestParam("hours") String hours, @RequestParam("mins") String mins, @RequestParam("seconds") String seconds) {
+    public String packed(@ModelAttribute("pack") PhoneModel pack, @RequestParam("grade") String grade, @RequestParam("send_to") String send_to, @RequestParam("hours") String hours, @RequestParam("mins") String mins, @RequestParam("seconds") String seconds) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         GradeModel gradeModel = gradeService.findFirstByImeiOrderByIdDesc(pack.getImei());
         gradeModel.setId(null);

@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -175,7 +174,7 @@ public class ExportController {
     }
 
     @GetMapping("/output/export")
-    public void exportOutputToExcel(HttpServletResponse response, Model model) throws IOException, ParseException {
+    public void exportOutputToExcel(HttpServletResponse response) throws IOException, ParseException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -195,7 +194,7 @@ public class ExportController {
     }
 
     @GetMapping("/shipping/export")
-    public void exportShippingToExcel(HttpServletResponse response, Model model) throws IOException, ParseException {
+    public void exportShippingToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
