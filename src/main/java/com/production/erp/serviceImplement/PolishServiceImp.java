@@ -35,11 +35,16 @@ public class PolishServiceImp implements PolishService {
 
     @Override
     public PolishModel polishByImei(Long imei) {
-        Optional<PolishEntity> optional = repository.findFirstByImeiOrderByDateDesc(imei);
+        Optional<PolishEntity> optional = repository.findFirstByImeiOrderByIdDesc(imei);
         if (optional.isPresent()){
             return converter.toModel(optional.get());
         } else {
             throw new PolishNotFoundException("Polish not found. IMEI: " + imei);
         }
+    }
+
+    @Override
+    public List<PolishModel> allPolishByImei(Long imei) {
+        return converter.listToModels(repository.findByImei(imei));
     }
 }

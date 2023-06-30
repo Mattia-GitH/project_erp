@@ -14,27 +14,36 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Polish</title>
+
+    <style>
+        .form-group {
+            margin-top: 50px;
+        }
+    </style>
+
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <div class="container">
-
-    <form:form method="post" modelAttribute="polishContainer" action="${pageContext.request.contextPath}/polish">
-    <div class="row">
+    <form:form method="post" modelAttribute="polishContainer" action="${pageContext.request.contextPath}/polishing">
+        <div class="row">
         <c:forEach items="${polish}" var="polish" varStatus="status">
-        <div class="col-3">
-            <h1>${status.index}</h1>
-
-            <form:label path="polishList[${status.index}].imei">imei:
-                <form:input path="polishList[${status.index}].imei" readonly="true"></form:input></form:label>
-        </div>
-        <c:if test="${status.index == 3}">
-    </div>
-    <div class="row">
-        </c:if>
+            <div class="col-3">
+                <div class="form-group">
+                    <form:label class="form-label" path="polishList[${status.index}].imei">imei ${status.index + 1}:
+                        <form:input class="form-control" path="polishList[${status.index}].imei"></form:input></form:label>
+                </div>
+            </div>
+            <c:if test="${status.index == 3}">
+                </div>
+                <div class="row">
+            </c:if>
         </c:forEach>
-        </form:form>
-    </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <button class="btn btn-outline-primary" type="submit">START</button>
+        </div>
+    </form:form>
 </div>
 </body>
 </html>

@@ -32,9 +32,10 @@ public class PackingController {
     private final IssueListService issueListService;
     private final TestingService testingService;
     private final OrderService orderService;
+    private final PolishService polishService;
 
     @Autowired
-    public PackingController(PhoneService phoneService, LastStatusViewService lastStatusViewService, GradeService gradeService, BatteryService batteryService, StatusService statusService, IssueListService issueListService, TestingService testingService, OrderService orderService) {
+    public PackingController(PhoneService phoneService, LastStatusViewService lastStatusViewService, GradeService gradeService, BatteryService batteryService, StatusService statusService, IssueListService issueListService, TestingService testingService, OrderService orderService, PolishService polishService) {
         this.phoneService = phoneService;
         this.lastStatusViewService = lastStatusViewService;
         this.gradeService = gradeService;
@@ -43,6 +44,7 @@ public class PackingController {
         this.issueListService = issueListService;
         this.testingService = testingService;
         this.orderService = orderService;
+        this.polishService = polishService;
     }
 
     @RequestMapping("/packing")
@@ -78,6 +80,7 @@ public class PackingController {
 
                 boolean isRev = checkRev == 22;
 
+                model.addAttribute("timesPolish", polishService.allPolishByImei(imei));
                 model.addAttribute("rev", isRev);
                 model.addAttribute("grade", gradeService.findFirstByImeiOrderByIdDesc(imei));
                 model.addAttribute("info", phoneService.phoneInfos(imei));

@@ -99,7 +99,7 @@
                                      path="statusList[${st.index}].send_to" required="true">
                             <form:option id="selected${st.index}" value=""></form:option>
                             <c:forEach items="${phases}" var="phase">
-                                <c:if test="${phase.phase == 'FIXING' || phase.phase == 'TECHLAB' || phase.phase == 'PACKING' || phase.phase == 'RMA' || phase.phase == 'SCRAPS' }">
+                                <c:if test="${phase.phase == 'POLISH' || phase.phase == 'FIXING' || phase.phase == 'TECHLAB' || phase.phase == 'PACKING' || phase.phase == 'RMA' || phase.phase == 'SCRAPS' }">
                                     <form:option value="${phase.phase}">${phase.phase}</form:option>
                                 </c:if>
                             </c:forEach>
@@ -113,8 +113,6 @@
                     <div>
                         <c:forEach items="${test}" var="test">
                             <c:if test="${test.imei == status.imei}">
-
-
                                 <script>
                                     if (${test.TL0 == true || test.TL1 == true || test.TL2 == true || test.TL4 == true ||
                     test.TL5 == true  || test.TL5A == true || test.TL5B == true || test.TL8P == true || test.TL9 == true || test.TL10 == true || test.TL10G == true

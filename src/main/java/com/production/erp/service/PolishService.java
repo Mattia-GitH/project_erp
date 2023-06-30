@@ -13,4 +13,6 @@ public interface PolishService {
     List<PolishModel> listPolish();
 
     PolishModel polishByImei(Long imei);
+
+    List<PolishModel> allPolishByImei(Long imei);
 }

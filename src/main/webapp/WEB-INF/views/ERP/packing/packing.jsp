@@ -111,10 +111,10 @@
             color: #efefef;
         }
 
-        .select-button:checked + .button-label:hover {
-            background: #29b765;
-            color: #e2e2e2;
-        }
+            .select-button:checked + .button-label:hover {
+                background: #29b765;
+                color: #e2e2e2;
+            }
 
         .hidden {
             display: none;
@@ -223,6 +223,7 @@
         </div>
         <div class="col-2">
             <p>Info</p>
+            <p style="color: red;">Times in polish: ${timesPolish.size()}</p>
             <p>imei: ${info.imei}</p>
             <p>Model: ${info.model}</p>
             <p>GB: ${info.gb}</p>
@@ -572,6 +573,7 @@
                 <h4 style="color: red">Send To</h4>
                 <select name="send_to" class="selectpicker form-control">
                     <option value="STOCK">STOCK</option>
+                    <option value="POLISH">POLISH</option>
                 </select>
                 <c:if test="${rev == true}">
                     <button id="save" style="margin-bottom:30px; width: 100%; margin-top:50px;" type="button" class="btn btn-primary" data-bs-toggle="modal"
